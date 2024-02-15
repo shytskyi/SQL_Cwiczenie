@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>SQL_Cwiczenie</Name>
+    <Name>SQL_QUERY</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{b686db6b-7130-429a-ab50-7e7e73d20283}</ProjectGuid>
@@ -58,6 +58,7 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Function1.sql" />
+    <Build Include="SQL_SELECT_QUERY.sql" />
+    <Build Include="SQL_CREATE_DROP_QUERY.sql" />
   </ItemGroup>
 </Project>
