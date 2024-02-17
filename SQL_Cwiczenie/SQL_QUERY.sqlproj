@@ -60,5 +60,6 @@
   <ItemGroup>
     <Build Include="SQL_SELECT_QUERY.sql" />
     <Build Include="SQL_CREATE_DROP_QUERY.sql" />
+    <Build Include="CTE.sql" />
   </ItemGroup>
 </Project>
