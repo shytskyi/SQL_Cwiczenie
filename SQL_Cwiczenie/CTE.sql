@@ -199,4 +199,44 @@ WITH CTE_ZADANIE7_1 AS
 		FROM [dbo].[TEST_TABLE]
 		WHERE [CustomerId] IS NULL
 	)
-DELETE FROM CTE_ZADANIE7_1
+DELETE FROM CTE_ZADANIE7_1;
+
+--Napisz zapytanie, które zwróci w jednym wierszu Maksymalną i Minimalną wartość pojedynczego zamówienia.
+WITH CTE_ZADANIA_8 AS
+(
+    SELECT [OrderID]
+    , MIN([Freight]) OVER (PARTITION BY [OrderID]) AS MINIMALNE
+    , MAX([Freight]) OVER (PARTITION BY [OrderID]) AS MAXYMALNE 
+    FROM [dbo].[Orders] 
+)
+SELECT DISTINCT [OrderID], MINIMALNE, MAXYMALNE
+FROM CTE_ZADANIA_8
+ORDER BY [OrderID];
+
+SELECT  CustomerID, COUNT(CustomerID) AS Ilosc_zamowien FROM Orders GROUP BY CustomerID;
+
+--Policz Ile średnio zamówień złożyli klienci
+WITH CTE_ZADANIA_9 AS
+	(
+	  SELECT  CustomerID, COUNT(CustomerID) AS Ilosc_zamowien FROM Orders 
+	  GROUP BY CustomerID	
+	),
+	--select AVG(Ilosc_zamowien) AS [SREDNIA ILOSC ZAMOWIEN] From CTE_ZADANIA_9
+	CTE_ZADANIA_9_1 AS
+	(
+	Select o.CustomerID,  avg(Freight) as avge 
+	From Orders o	
+	group by o.CustomerID	
+	)
+	 select c1.CustomerID, c1.Ilosc_zamowien, c2.avge From CTE_ZADANIA_9 c1
+	 join CTE_ZADANIA_9_1 c2 on c1.CustomerID=c2.CustomerID;
+
+--Policz, ile średnio zamówień złożyli klienci w roku 1997
+WITH CTE_ZADANIA_10 AS
+	(
+	  SELECT YEAR([OrderDate]) AS Year1, CustomerID, COUNT(CustomerID) AS Ilosc_zamowien FROM Orders 
+	  GROUP BY CustomerID, [OrderDate]
+	)
+select AVG(Ilosc_zamowien) AS [SREDNIA ILOSC ZAMOWIEN w 1997] 
+From CTE_ZADANIA_10
+where Year1 = '1997'
