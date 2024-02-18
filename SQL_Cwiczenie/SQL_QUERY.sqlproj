@@ -56,10 +56,12 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Files" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="SQL_SELECT_QUERY.sql" />
     <Build Include="SQL_CREATE_DROP_QUERY.sql" />
     <Build Include="CTE.sql" />
+    <Build Include="XML_w_SQL.sql" />
   </ItemGroup>
 </Project>
